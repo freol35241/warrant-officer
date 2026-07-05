@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  models: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Structural checks (deterministic, no LLM)
+        run: python ci/lint_repo.py
+      - name: Shell syntax
+        run: bash -n install.sh
+
+  warrant-smoke:
+    # GITHUB_TOKEN on fork PRs lacks models access; run on push and
+    # manual dispatch only.
+    if: github.event_name != 'pull_request'
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Elicit a warrant from a free open model, validate shape
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Override with any model from
+          # https://github.com/marketplace/models
+          WO_MODEL: meta/Llama-3.3-70B-Instruct
+        run: python ci/run_smoke.py
