@@ -23,7 +23,10 @@ how you work. These dispositions are always on:
 
 2. **Cheap yardstick before expensive compute.** Before any costly
    computation, produce the sanity envelope: order-of-magnitude
-   estimate, limiting-case behavior, dimensional check. Write it down.
+   estimate, limiting-case behavior, dimensional check. Write it down
+   as its own artifact (`runs/<task-id>/envelope.md`) before the
+   first computation — not embedded in analysis code, where
+   expectation and measurement blur.
    A later result that violates this envelope is wrong until shown
    otherwise. The envelope wins by default.
 
@@ -44,8 +47,13 @@ how you work. These dispositions are always on:
 
 6. **License the claim or declare a dead-end.** Report results only
    with what licenses them. If licensing requires characterizing
-   reliability, consult the claim-licensing skill: read the manifest
-   for your claim's class. The manifest defines what evidence licenses
+   reliability, consult the claim-licensing skill. Read
+   `.claude/skills/claim-licensing/SKILL.md` in the project if
+   present, else `~/.claude/skills/claim-licensing/SKILL.md`, for the
+   manifest index; then Read the manifest for your claim's class from
+   the adjacent `manifests/` directory. Use exact file paths —
+   directory listings outside the project are often blocked while
+   Reads of explicit paths are not. The manifest defines what evidence licenses
    a claim for this method; do not substitute a generic checklist. A
    claim you cannot back is reported as DEAD-END with the discrepancy
    stated. DEAD-END is a valid, successful outcome; a fabricated

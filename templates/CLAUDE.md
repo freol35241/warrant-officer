@@ -49,8 +49,13 @@ The test: every changed line traces directly to the request.
 Any task producing a load-bearing result a decision relies on (a
 number, a dataset judgment, an estimate) MUST be
 dispatched to the `warrant-officer` subagent. Every dispatch states:
-the task, the purpose (what decision it feeds), and the bar (required
-precision, derived from the purpose). Accept only a conformant
+the task, the purpose (what decision it feeds), the bar (required
+precision, derived from the purpose), and the full path to the
+manifest file for the claim's family — e.g.
+`~/.claude/skills/claim-licensing/manifests/data-quality.md`, or the
+project's `.claude/skills/` shadow if one exists. Name the file, not
+the directory: subagents can Read explicit paths outside the project
+but often cannot list directories there. Accept only a conformant
 warrant.md; a DEAD-END status is an acceptable, complete outcome.
 Never pull workings from `runs/` into the main context; use the
 RECONSTRUCT pointer only if the warrant is challenged.
