@@ -56,15 +56,21 @@ every transformation stage.
 
 ## Honest-exit template for the warrant's ERROR field
 
+Hard requirements, on top of the template below: every class in the
+error profile appears BY NAME with a status — bounded (cite the
+check) or absent (state why, e.g. "identity/join: absent — single
+source, no joins performed"). A class you did not check is declared,
+never omitted. The closing "NOT licensed for" clause is mandatory
+for this family: the characteristic data failure is reuse outside
+the validated purpose.
+
 "Completeness: X% coverage over <window>, gaps <located and
 characterized>. Accuracy: ranges within physical envelope except
 <exceptions>. Consistency: <invariants> close within <Z>. Join: Y%
-match on <key>, unmatched <analyzed>. Temporal: aligned to <resolution>.
-Lineage: <n> stages, conservation checked at each. Dominant risk:
-<class>, bounded by <check>. Fit for <stated purpose>; NOT licensed
-for <adjacent uses this was not validated against>."
+match on <key>, unmatched <analyzed> (or: absent — single source).
+Temporal: aligned to <resolution>. Lineage: <n> stages, conservation
+checked at each. Dominant risk: <class>, bounded by <check>. Fit for
+<stated purpose>; NOT licensed for <adjacent uses this was not
+validated against>."
 
-Note the final clause is mandatory for this family: the
-characteristic data failure is reuse outside the validated purpose.
-A data warrant should travel with its dataset as a datasheet with
-teeth.
+A data warrant travels with its dataset as a datasheet with teeth.

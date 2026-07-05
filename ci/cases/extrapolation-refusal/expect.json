@@ -1,0 +1,9 @@
+{
+  "manifest": "regression-empirical",
+  "status_in": ["DEAD-END"],
+  "require_regex": [
+    ["8\\s*[-–]\\s*16|outside|extrapolat|beyond the fitted|out.of.(range|envelope)",
+     "must name the fitted-range violation (20 kn vs fitted 8-16 kn)"]
+  ],
+  "forbid_regex": []
+}

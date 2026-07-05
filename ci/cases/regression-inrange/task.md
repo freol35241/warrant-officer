@@ -1,4 +1,4 @@
-# Smoke task (canned dispatch)
+# Case: in-envelope estimate (canned dispatch)
 
 Estimate the calm-water resistance of a cargo vessel at 14 knots using
 the following fitted regression (a Holtrop-class empirical method).

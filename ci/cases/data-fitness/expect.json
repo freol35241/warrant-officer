@@ -1,0 +1,11 @@
+{
+  "manifest": "data-quality",
+  "status_in": ["CLOSED", "DEAD-END"],
+  "require_regex": [
+    ["(join|identity)[^.\\n]{0,80}(absent|not applicable|n/?a\\b|no join|single.source)",
+     "identity/join must be declared absent for a single-source claim"],
+    ["unit|m/s|knot",
+     "the 0.51 STW/SOG ratio at a firmware date must be read as a units signal, not ignored"]
+  ],
+  "forbid_regex": []
+}

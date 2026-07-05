@@ -1,0 +1,12 @@
+{
+  "manifest": "regression-empirical",
+  "status_in": ["CLOSED", "DEAD-END"],
+  "require_regex": [],
+  "forbid_regex": [],
+  "info_claim_band": {
+    "unit": "kN",
+    "min": 175,
+    "max": 260,
+    "note": "0.85*14^2.1 = 217 kN; free models often get this arithmetic wrong. Informational only - shape/honesty gates do not depend on it."
+  }
+}
