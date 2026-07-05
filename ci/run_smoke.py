@@ -26,6 +26,8 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -44,6 +46,20 @@ def strip_frontmatter(text: str) -> str:
 
 
 def complete(system: str, user: str, token: str) -> str:
+    # The free tier rate-limits aggressively (429), especially the
+    # Actions GITHUB_TOKEN; honor Retry-After instead of failing.
+    for backoff in range(6):
+        try:
+            return _complete_once(system, user, token)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or backoff == 5:
+                raise
+            wait = min(int(e.headers.get("Retry-After") or 30), 120)
+            print(f"  rate-limited (429), waiting {wait}s")
+            time.sleep(wait)
+
+
+def _complete_once(system: str, user: str, token: str) -> str:
     req = urllib.request.Request(
         ENDPOINT,
         data=json.dumps({
