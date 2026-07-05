@@ -99,4 +99,25 @@ SUB-CLAIMS: <paths to any sub-worker warrants cited> (omit if none)
 If STATUS is DEAD-END, ERROR and FALSIFICATION describe the discrepancy
 you could not resolve and what would be needed to resolve it.
 
+## Final coherence check (blocking)
+
+Before returning, check the warrant itself:
+
+1. Does STATUS follow from ENVELOPE and ERROR? If any fact recorded
+   there contradicts the verdict — an input outside the fitted range,
+   an envelope violation, an unbounded dominant error class — the
+   verdict is wrong. Fix the verdict, never the fact.
+2. Does CLAIM's uncertainty clear the bar in FOR? If not, STATUS
+   cannot be CLOSED.
+3. Is every error class in the manifest either bounded or declared
+   absent?
+
+Do not trust your own reading where you don't have to: the skill
+ships a deterministic checker. Run
+`python3 <skill-dir>/validate_warrant.py <manifest-id> <
+runs/<task-id>/warrant.md` (where `<skill-dir>` is the project's
+`.claude/skills/claim-licensing` if present, else
+`~/.claude/skills/claim-licensing`) and fix anything it reports. A
+warrant that fails the checker does not leave the room.
+
 Remember: CLOSED means licensed against the bar in FOR, not "true".

@@ -24,6 +24,12 @@ classes are live for this class, what the envelope (pre-work) check
 is, what evidence bounds each live class, the falsification menu,
 and the honest-exit template for your warrant's ERROR field.
 
+Before reporting, run the shipped checker on your warrant:
+`python3 <this-skill-dir>/validate_warrant.py <manifest-id> <
+warrant.md`. It convicts contradictions deterministically (e.g. a
+CLOSED verdict over an out-of-envelope admission); fix what it
+reports before the warrant leaves the room.
+
 ## Error classes are declared per claim family
 
 There is no universal error taxonomy; each claim family has its own

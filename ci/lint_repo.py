@@ -56,6 +56,11 @@ def check_agent() -> None:
             err(f"agent file: warrant field '{field}' missing from "
                 "output contract")
 
+    if "Final coherence check" not in text:
+        err("agent file: 'Final coherence check' section missing")
+    if "validate_warrant.py" not in text:
+        err("agent file: no instruction to run the shipped checker")
+
 
 def check_skill_and_manifests() -> None:
     skill = ROOT / "skills" / "claim-licensing" / "SKILL.md"
@@ -66,6 +71,11 @@ def check_skill_and_manifests() -> None:
     if not re.match(r"^---\n.*?name: claim-licensing.*?\n---\n",
                     stext, re.DOTALL):
         err("SKILL.md: frontmatter missing or name != claim-licensing")
+
+    checker = ROOT / "skills" / "claim-licensing" / "validate_warrant.py"
+    if not checker.exists():
+        err("skills/claim-licensing/validate_warrant.py missing — "
+            "the skill must ship its checker")
 
     mdir = ROOT / "skills" / "claim-licensing" / "manifests"
     manifests = sorted(mdir.glob("*.md")) if mdir.exists() else []

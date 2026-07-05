@@ -56,7 +56,10 @@ manifest file for the claim's family — e.g.
 project's `.claude/skills/` shadow if one exists. Name the file, not
 the directory: subagents can Read explicit paths outside the project
 but often cannot list directories there. Accept only a conformant
-warrant.md; a DEAD-END status is an acceptable, complete outcome.
+warrant.md — verifiable deterministically with
+`python3 ~/.claude/skills/claim-licensing/validate_warrant.py
+<manifest-id> < runs/<task-id>/warrant.md` — and a DEAD-END status is
+an acceptable, complete outcome.
 Never pull workings from `runs/` into the main context; use the
 RECONSTRUCT pointer only if the warrant is challenged.
 
